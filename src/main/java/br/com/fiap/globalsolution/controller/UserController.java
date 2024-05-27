@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.fiap.globalsolution.model.User;
+import br.com.fiap.globalsolution.model.Usuario;
 import br.com.fiap.globalsolution.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,20 +32,20 @@ public class UserController {
     UserRepository repository;
 
     @GetMapping
-    public List<User> index() {
+    public List<Usuario> index() {
         return repository.findAll();
 
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public User create(@RequestBody User user) { 
+    public Usuario create(@RequestBody Usuario user) { 
         log.info("cadastrando user {} ", user);
         return repository.save(user);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> show(@PathVariable Long id) {
+    public ResponseEntity<Usuario> show(@PathVariable Long id) {
         log.info("buscando user por id {}", id);
 
         return repository
@@ -64,7 +64,7 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    public User update(@PathVariable Long id, @RequestBody User user) {
+    public Usuario update(@PathVariable Long id, @RequestBody Usuario user) {
         log.info("atualizando user com id {} para {}", id, user);
 
         verificarSeExisteUser(id);
